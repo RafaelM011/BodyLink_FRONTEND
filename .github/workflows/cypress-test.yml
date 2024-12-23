@@ -1,8 +1,12 @@
 name: Cypress Tests
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   cypress:
@@ -28,12 +32,12 @@ jobs:
         run: npm run dev &
 
       - name: Wait for Vite server to be ready
-        uses: jakejarvis/wait-action@v1
-        with:
-          timeout: 60
-          url: http://localhost:3000
+        run: npx wait-on http://localhost:3000
 
       - name: Run Cypress tests
-        run: npx cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: http://localhost:3000
         env:
           CI: true
