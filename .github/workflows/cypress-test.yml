@@ -1,43 +1,32 @@
-name: Cypress Tests
+name: Run Cypress Tests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  cypress:
+  cypress-run:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js ${{ matrix.node-version }}
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22' # Actualiza a la versión correcta
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci # Usa npm ci para instalar dependencias de forma limpia
 
-      - name: Start Vite server
-        run: npm run dev &
+      - name: Start server and run Cypress tests
+        run: |
+          npm run test:cypress  # Ejecuta el script test:cypress que ya configuramos
 
-      - name: Wait for Vite server to be ready
-        run: npx wait-on http://localhost:3000
-
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v2
+      - name: Upload Cypress results (if tests fail)
+        if: failure() # Solo sube los artefactos si las pruebas fallan
+        uses: actions/upload-artifact@v3
         with:
-          start: npm run dev
-          wait-on: http://localhost:3000
-        env:
-          CI: true
+          name: cypress-results
+          path: cypress/results
