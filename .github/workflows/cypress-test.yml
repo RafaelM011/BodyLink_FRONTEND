@@ -1,0 +1,29 @@
+name: Cypress Tests
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  Cypress:
+    name: App tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+      - name: Get node version
+        run: echo "NODE_VERSION=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+        id: nvm
+      - name: Install correct node version
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
+      - name: Install Dependencies
+        run: npm install
+      - name: Cypress.io
+        uses: cypress-io/github-action@v6.7.8
+        with:
+          browser: chrome
+          build: npm run build
+          start: npm run dev
+          wait-on: 'http://localhost:3000'
