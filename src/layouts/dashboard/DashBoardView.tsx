@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { Sidebar } from '../../components';
 import styles from './DashBoardView.module.css';
 
 export function DashBoardView() {
   return (
     <div className={styles.main}>
-      <h1>Sidebar</h1>
+      <Sidebar />
       <Outlet />
     </div>
   );
