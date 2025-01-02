@@ -7,6 +7,7 @@ function App() {
     <Routes>
       <Route path='/' element={<DashBoardView />}>
         <Route path='/' element={<HomePage />} />
+        <Route path='/pacientes' element={<HomePage />} />
       </Route>
     </Routes>
   );
