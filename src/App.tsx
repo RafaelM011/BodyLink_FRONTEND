@@ -1,7 +1,15 @@
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
+import { HomePage } from './pages';
+import { DashBoardView } from './layouts';
 
 function App() {
-  return <h1>My App</h1>
+  return (
+    <Routes>
+      <Route path='/' element={<DashBoardView />}>
+        <Route path='/' element={<HomePage />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
