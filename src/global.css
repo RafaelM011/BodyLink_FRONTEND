@@ -20,6 +20,44 @@
   --destructive-color: #FF4F52;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inter", serif;
+  background-color: var(--body-color);
+  color: var(--primary-text);
+  overflow-x: hidden;
+}
+
+/* Defaults styles */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  border: 0;
 }
