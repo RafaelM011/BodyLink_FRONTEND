@@ -9,7 +9,7 @@ export function Sidebar() {
   const isActive = (path: string): boolean => location.pathname === path;
 
   return (
-    <div data-testId='sidebard' className={styles.sidebar}>
+    <div data-testid='sidebard' className={styles.sidebar}>
       <div className={styles.sidebarWrapper}>
         <div>
           <h1 className={styles.logo}>
