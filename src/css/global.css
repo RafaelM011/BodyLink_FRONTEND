@@ -61,3 +61,12 @@ svg {
   user-select: none;
   border: 0;
 }
+
+button {
+  display: inline-block;
+  padding: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
