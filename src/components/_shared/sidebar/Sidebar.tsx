@@ -1,4 +1,4 @@
-import styles from './sidebar.module.css';
+import styles from './Sidebar.module.css';
 import { SidebarItems } from './components/SidebarItems';
 import items from './SidebarMenuItems.json';
 import getIcon from '../../../utils/getIcons';
