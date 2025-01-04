@@ -1,5 +1,0 @@
-# Ignore production
-dist
-
-# Ignore packages
-package-lock.json

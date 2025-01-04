@@ -1,1 +1,1 @@
-export * from "./DashBoardView"
+export * from './DashBoardView'
